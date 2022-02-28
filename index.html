@@ -8,6 +8,20 @@
     <title>phone gallery</title>
 </head>
 <body>
-    
+    <head>
+        <h1 class="text-center my-5">Smartphone Gallery</h1>
+    </head>
+    <main>
+        <!-- phone search area -->
+        <div class="input-group mb-3 w-50 mx-auto">
+            <input id="search-field" type="text" class="form-control" placeholder="Search the cellphone you want..." aria-label="Recipient's username" aria-describedby="button-addon2">
+            <button onclick="searchPhone()" class=" btn btn-outline-secondary" type="button" id="button-search">search</button>
+        </div>
+
+        <!-- phone search result area-->
+        <div id="search-result" class="row row-cols-1 row-cols-md-3 g-4">
+            
+        </div>
+    </main>
 </body>
 </html>
