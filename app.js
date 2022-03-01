@@ -1,15 +1,27 @@
 const phoneSearch = document.getElementById("search-field")
 const phoneResult = document.getElementById("search-result")
+const phoneDetail = document.getElementById('phone-details');
+const error = document.getElementById("error")
 
     //search phone area -->
 
 const searchPhone = () =>{
     const searchText = phoneSearch.value;
+    if(!isNaN(searchText) || searchText == ""){
+        error.innerText = "please give valid input"
+        phoneSearch.value = "";
+        phoneResult.innerHTML = "";
+        phoneDetail.innerHTML = "";
 
-    const url = `https://openapi.programming-hero.com/api/phones?search=${searchText}`
-    fetch(url)
-    .then(res => res.json())
-    .then(data => displayPhone(data.data.slice(0,20)))
+    }else{
+        error.innerText = ""
+        phoneResult.innerHTML = "";
+        phoneDetail.innerHTML = "";
+        const url = `https://openapi.programming-hero.com/api/phones?search=${searchText}`
+        fetch(url)
+        .then(res => res.json())
+        .then(data => displayPhone(data.data.slice(0,20)))
+    }
 }
     //display phone area -->
 
