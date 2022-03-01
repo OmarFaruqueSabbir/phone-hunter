@@ -27,7 +27,6 @@ const searchPhone = () =>{
 
 const displayPhone = phones =>{
     phones.forEach(phone =>{
-        //console.log(phone)
         const div = document.createElement('div')
         div.classList.add('col')
         div.innerHTML = `
@@ -59,11 +58,11 @@ const loadPhoneDetail = (phoneId) =>{
 const displayPhoneDetail = phone =>{
     console.log(phone);
     const phoneDetail = document.getElementById('phone-details');
-    //const release = document.getElementById('release')
     const div = document.createElement('div')
+    phoneDetail.innerHTML = "";
     div.classList.add('card')
     div.innerHTML = ` 
-    <img src="${phone.image}" class="card-img-top" alt="...">
+    <img src="${phone.image}" class="card-img-top mt-3" alt="...">
     <div class="card-body">
       <h4>${phone.name}</h4>
       <h5 id="releaseP" class="card-title"><strong>Release-date: </strong><span class="text-danger"> ${phone.releaseDate ? phone.releaseDate: 'no release date found' } </span></h5>
@@ -71,16 +70,32 @@ const displayPhoneDetail = phone =>{
       <p class="card-text"><strong>Chipset:</strong> ${phone.mainFeatures.chipSet} <br>   <strong>Memory:</strong> ${phone.mainFeatures.memory} <br> 
       <strong>Display size:</strong> ${phone.mainFeatures.displaySize} <br>
       <strong>Sensors:</strong> ${phone.mainFeatures.sensors.slice(0,-1)} </p>
-
-      <p class="card-text mb-0"><strong>Other Features -</strong></p>
-      <p class="card-text"><strong>Wlan:</strong> ${phone.others.WLAN} <br>   
-      <strong>Memory:</strong> ${phone.others.Bluetooth} <br> 
-      <strong>GPS:</strong> ${phone.others.GPS} <br>
-      <strong>NFC:</strong> ${phone.others.NFC} <br>
-      <strong>Radio:</strong> ${phone.others.Radio} <br>
-      <strong>USB:</strong> ${phone.others.USB}
-      </p>
     </div>
     `;
+    const div2 = document.createElement('div')
+    phoneDetail.innerHTML = "";
+    div2.classList.add('card','mb-3')
+    if(phone.others == null){
+        div2.innerHTML = `
+        <div class="card-body">
+        <p class="card-text mb-0"><strong>Other Features - <span class="text-warning">No data found!</span></strong></p>  
+        </div>
+        `
+    }
+    else{
+        div2.innerHTML = `
+        <div class="card-body">
+        <p class="card-text mb-0"><strong>Other Features -</strong></p>
+        <p class="card-text"><strong>Wlan:</strong> ${phone.others.WLAN} <br>   
+        <strong>Memory:</strong> ${phone.others.Bluetooth} <br> 
+        <strong>GPS:</strong> ${phone.others.GPS} <br>
+        <strong>NFC:</strong> ${phone.others.NFC} <br>
+        <strong>Radio:</strong> ${phone.others.Radio} <br>
+        <strong>USB:</strong> ${phone.others.USB}
+        </p>
+        </div>
+        `
+    }
     phoneDetail.appendChild(div);
+    phoneDetail.appendChild(div2);
 }
